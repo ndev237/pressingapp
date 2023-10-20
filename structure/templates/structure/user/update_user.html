@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>modification</title>
+{% endblock %}
+
+{% block content %}
+    <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+             aria-hidden="true">
+
+        </div>
+        <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl">Modifier l'utilisateur
+                "{{ user.nom }}"</h2>
+        </div>
+
+        <form method="POST" class="mx-auto mt-10 max-w-xl sm:mt-18">
+            {% csrf_token %}
+            <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                <div>
+                    {{ form.as_p }}
+                </div>
+            </div>
+            <br>
+            <div class="mt-10">
+                <button type="submit"
+                        class="block w-full rounded-md bg-orange-600 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    Modifier
+                </button>
+            </div>
+        </form>
+        <a href="{% url 'structure:user_list' %}">Retour à la liste</a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>home</title>
+{% endblock%}
+{% block content%}
+
+    <div>
+        <h1>Bienvennu chez GOld Clearn</h1>
+        <a href="{% url 'localisation:localisation_index' %}"> Localisation </a>
+        <a href="{% url 'structure:structure_index' %}"> Structure </a>
+    </div>
+    </div>
+{% endblock%}

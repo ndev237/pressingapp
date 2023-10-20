@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title> suppression </title>
+{% endblock %}
+
+{% block content %}
+    <h1> Supprimer l'utilisateur "{{ user.nom }}"</h1>
+    <p> Etes-vous sur de vouloir supprimer cet utilisateur?</p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit"
+                class="block w-full rounded-md bg-orange-600 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" >
+            Supprimer
+        </button>
+    </form>
+    <a href="{% url 'structure:user_list' %}">Retour à la liste des utilisateurs </a>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+{% load static tailwind_tags %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/dist/ndev.css' %}">
+    {% block title %}
+        <title> Accueil du pressing </title>
+    {% endblock%}
+    {% tailwind_css %}
+</head>
+<body>
+<main>
+    {% block content%}
+    {% endblock%}
+</main>
+
+</body>
+</html>

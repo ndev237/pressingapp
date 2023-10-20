@@ -1,0 +1,18 @@
+label {
+    color: darkred;
+    container: block;
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 10px;
+
+}
+
+input {
+    container: block;
+    width: max-content;
+    padding: 10px;
+    font-size: 20px;
+    margin-right: 20px;
+    border: 2px solid #ddd;
+    border-radius: 3px;
+}

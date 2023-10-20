@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title> liste </title>
+{% endblock %}
+{% block content %}
+
+    <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+             aria-hidden="true">
+
+        </div>
+        <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl ">Liste des Filiales</h2>
+        </div>
+
+        <table class="min-w-full border-collapse block md:table sm:shadow-lg mt-3">
+            <thead class="block md:table-header-group">
+            <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Nom de l'entreprise
+                </th>
+                <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Nom de la ville
+                </th>
+                <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Nom de la filiale
+                </th>
+                <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Adresse de la filiale
+                </th>
+                <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    téléphone de la filiale
+                </th>
+                <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Action
+                </th>
+            </tr>
+            </thead>
+            <tbody class="block md:table-row-group">
+            {% for fil in filiales %}
+                <tr class="bg-blue-500 font-bold border border-grey-500 md:border-3 block md:table-row sm:shadow-lg text-white">
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ fil.entreprise.nom }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ fil.ville.intitule }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ fil.nom }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ fil.adresse }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ fil.tel }}</td>
+                    <td>
+                        <a href="{% url 'structure:filiale_delete' fil.pk %}"
+                           class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Supprimer</a>
+                        <a href="{% url 'structure:filiale_update' fil.pk %}"
+                           class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-1 px-2 border border-blue-700 rounded">Mofifier</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3" class="text-red-500 font-bold ">Aucunne filiale trouvée.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="{% url 'structure:filiale_create' %}"
+           class=" rounded-full bg-blue-700 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline">
+            Ajouter une filiale</a>
+        <a href="{% url 'structure:structure_index' %}"
+           class=" rounded-full bg-blue-700 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline">
+            Retour à l'index</a>
+    </div>
+
+{% endblock %}

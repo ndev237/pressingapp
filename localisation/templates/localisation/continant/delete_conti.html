@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title> suppression </title>
+{% endblock %}
+
+{% block content %}
+    <h1> Supprimer le Continanat "{{ continant.intitule }}"</h1>
+    <p> Etes-vous sur de vouloir supprimer ce continant?</p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Supprimer</button>
+    </form>
+    <a href="{% url 'localisation: list_conti' %}">Retour à la liste des continants </a>
+{% endblock %}

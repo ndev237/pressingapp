@@ -1,0 +1,67 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+<title> liste </title>
+{% endblock %}
+{% block content %}
+    <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+             aria-hidden="true">
+
+        </div>
+        <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl">Liste des quartiers</h2>
+        </div>
+        <table class="min-w-full border-collapse block md:table sm:shadow-lg mt-3">
+            <thead class="block md:table-header-group">
+            <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
+                <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Nom de la ville
+                </th>
+                <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Nom du quartier
+                </th>
+                <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    Actions
+                </th>
+            </tr>
+            </thead>
+            <tbody class="block md:table-row-group">
+            {% for quartier in quartiers %}
+                <tr class="bg-blue-400 font-bold border border-grey-500 md:border-3 block md:table-row sm:shadow-lg text-white">
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ quartier.id_ville.intitule }}
+                    </td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ quartier.intitule }}</td>
+
+                    <td>
+                        <a href="{% url 'localisation:quartier_create' %}"
+                           class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-1 px-2 border border-blue-500 rounded">Modifier</a>
+
+                        <a href="{% url 'localisation:quartier_create' %}"
+                           class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Supprimer</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3" class="text-red-500 font-bold ">Aucun quartier trouvé.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+    <a href="{% url 'localisation:quartier_create' %}"
+       class=" rounded-full bg-blue-700 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline">Ajouter
+        une ville</a>
+    <a href="{% url 'localisation:localisation_index' %}"
+       class=" rounded-full bg-blue-700 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline">Retour
+        à l'index</a>
+
+{% endblock %}
+
+
+
+
+

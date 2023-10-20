@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>creation</title>
+{% endblock %}
+{% block content %}
+
+    <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+             aria-hidden="true">
+
+        </div>
+        <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl">Ajouter un Continant</h2>
+        </div>
+        <form method="POST" class="mx-auto mt-10 max-w-xl sm:mt-18">
+            {% csrf_token %}
+
+            <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                <div>
+                    <label for="intitule" class="block text-lg font-semibold leading-6 text-gray-900">Intitule</label>
+                    <div class="mt-2.5">
+                        <input type="text" id="intitule" name="intitule" placeholder="Nom du continant"
+                               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <br>
+                <div class="mt-10">
+                    <button type="submit"
+                            class="block w-full rounded-md bg-orange-600 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        Ajouter
+                    </button>
+                </div>
+        </form>
+    </div>
+{% endblock %}
