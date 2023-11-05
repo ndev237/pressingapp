@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Entreprise, Filiale, User, Client
 from .forms import EntrepriseForm, FilialeForm, UserForm, ClientForm
+from localisation.models import Ville
 
 
 def index(request):
@@ -27,6 +28,7 @@ def create_user(request):
 
     :param request:
     """
+
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
@@ -37,14 +39,14 @@ def create_user(request):
     return render(request, 'structure/user/create_user.html', {'form': form})
 
 
-def update_user(request, id):
+def update_user(request, pk):
     """
 
-    :param id:
+    :param pk:
     :param request:
     :return:
     """
-    user = get_object_or_404(User, pk=id)
+    user = get_object_or_404(User, pk=pk)
     if request.method == 'POST':
         form = UserForm(request.POST, instance=user)
         if form.is_valid():
@@ -52,20 +54,20 @@ def update_user(request, id):
             return redirect('structure:user_list')
     else:
         form = UserForm(instance=user)
-    return render(request, 'structure/user/update_user.html', {'form': form}, {'user': user})
+    return render(request, 'structure/user/update_user.html', {'form': form, 'user': user})
 
 
-def delete_user(request, id):
+def delete_user(request, pk):
     """
 
     :param request:
-    :param id:
+    :param pk:
     :return:
     """
-    user = get_object_or_404(User, pk=id)
+    user = get_object_or_404(User, pk=pk)
     if request.method == 'POST':
         user.delete()
-        return redirect('structure:continant_list')
+        return redirect('structure:user_list')
     return render(request, 'structure/user/delete_user.html', {'user': user})
 
 
@@ -94,14 +96,14 @@ def create_entreprise(request):
     return render(request, 'structure/entreprise/create_entreprise.html', {'form': form})
 
 
-def update_entreprise(request, id):
+def update_entreprise(request, pk):
     """
 
-    :param id:
+    :param pk:
     :param request:
     :return:
     """
-    entreprise = get_object_or_404(Entreprise, pk=id)
+    entreprise = get_object_or_404(Entreprise, pk=pk)
     if request.method == 'POST':
         form = EntrepriseForm(request.POST, instance=entreprise)
         if form.is_valid():
@@ -109,7 +111,7 @@ def update_entreprise(request, id):
             return redirect('structure:entreprise_list')
     else:
         form = EntrepriseForm(instance=entreprise)
-    return render(request, 'structure/entreprise/update_entreprise.html', {'form': form}, {'entreprise': entreprise})
+    return render(request, 'structure/entreprise/update_entreprise.html', {'form': form, 'entreprise': entreprise})
 
 
 def delete_entreprise(request, id):
@@ -141,24 +143,34 @@ def create_filiale(request):
 
     :param request:
     """
-    if request.method == 'POST':
-        form = FilialeForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('structure:filiale_list')
-    else:
-        form = FilialeForm()
-    return render(request, 'structure/filiale/create_filiale.html', {'form': form})
+    villes = Ville.objects.all()
+
+    entreprises = Entreprise.objects.all()
+
+    if request.method == "POST":
+        entreprise = request.POST.get('entreprise')
+        viller = request.POST.get('ville')
+        nom = request.POST.get('nom')
+        adresse = request.POST.get('adresse')
+        tel = request.POST.get('tel')
+        ville = Ville.objects.get(pk=viller)
+        entreprise = Entreprise.objects.get(pk=entreprise)
+        Filiale.objects.create(ville=ville, entreprise=entreprise, nom=nom, adresse=adresse, tel=tel)
+        return redirect('structure:filiale_list')
+    return render(request, 'structure/filiale/add_filiale.html', {'villes': villes, 'entreprises': entreprises})
 
 
-def update_filiale(request, id):
+def update_filiale(request, pk):
     """
 
-    :param id:
+    :param pk:
     :param request:
     :return:
     """
-    filiale = get_object_or_404(Filiale, pk=id)
+    villes = Ville.objects.all()
+
+    entreprises = Entreprise.objects.all()
+    filiale = get_object_or_404(Filiale, pk=pk)
     if request.method == 'POST':
         form = FilialeForm(request.POST, instance=filiale)
         if form.is_valid():
@@ -166,21 +178,21 @@ def update_filiale(request, id):
             return redirect('structure:filiale_list')
     else:
         form = FilialeForm(instance=filiale)
-    return render(request, 'structure/filiale/update_filiale.html', {'form': form}, {'filiale': filiale})
+    return render(request, 'structure/filiale/update_filiale.html', {'form': form, 'filiale': filiale, 'villes': villes, 'entreprises':entreprises})
 
 
-def delete_filiale(request, id):
+def delete_filiale(request, pk):
     """
 
     :param request:
-    :param id:
+    :param pk:
     :return:
     """
-    filiale = get_object_or_404(Filiale, pk=id)
+    filiale = get_object_or_404(Filiale, pk=pk)
     if request.method == 'POST':
         filiale.delete()
         return redirect('structure:filiale_list')
-    return render(request, 'structure/filiale/delete_filiale.html', {'filiale': filiale})
+    return render(request, 'structure/filiale/list_filiale.html', {'filiale': filiale})
 
 
 def list_client(request):
@@ -198,24 +210,30 @@ def create_client(request):
 
     :param request:
     """
-    if request.method == 'POST':
-        form = ClientForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('structure:client_list')
-    else:
-        form = ClientForm()
-    return render(request, 'structure/client/create_client.html', {'form': form})
+    users = User.objects.all()
+
+    if request.method == "POST":
+        user = request.POST.get('user')
+        nom = request.POST.get('nom')
+        prenom = request.POST.get('prenom')
+        adresse = request.POST.get('adresse')
+        email = request.POST.get('email')
+        tel = request.POST.get('tel')
+        user = User.objects.get(pk=user)
+        Client.objects.create(user=user, nom=nom, prenom=prenom, adresse=adresse, email=email, tel=tel)
+        return redirect('structure:client_list')
+    return render(request, 'structure/client/create_client.html', {'users': users})
 
 
-def update_client(request, id):
+def update_client(request, pk):
     """
 
-    :param id:
+    :param pk:
     :param request:
     :return:
     """
-    client = get_object_or_404(Client, pk=id)
+    users = User.objects.all()
+    client = get_object_or_404(Client, pk=pk)
     if request.method == 'POST':
         form = ClientForm(request.POST, instance=client)
         if form.is_valid():
@@ -223,18 +241,18 @@ def update_client(request, id):
             return redirect('structure:client_list')
     else:
         form = ClientForm(instance=client)
-    return render(request, 'structure/client/update_client.html', {'form': form}, {'client': client})
+    return render(request, 'structure/client/update_client.html', {'form': form, 'client': client, 'users': users})
 
 
-def delete_client(request, id):
+def delete_client(request, pk):
     """
 
     :param request:
-    :param id:
+    :param pk:
     :return:
     """
-    client = get_object_or_404(Client, pk=id)
+    client = get_object_or_404(Client, pk=pk)
     if request.method == 'POST':
         client.delete()
         return redirect('structure:client_list')
-    return render(request, 'structure/client/delete_client.html', {'client': client})
+    return render(request, 'structure/client/list_client.html', {'client': client})

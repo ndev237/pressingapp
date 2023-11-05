@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}  <title>creation</title> {% endblock %}
-{% block content%}
+{% block content %}
 
     <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
@@ -44,6 +44,7 @@
                         Ajouter
                     </button>
                 </div>
+            </div>
         </form>
     </div>
     <a href="{% url 'localisation:pays_list' %}"  class=" rounded-full bg-blue-700 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline">Retour à la liste des pays </a>

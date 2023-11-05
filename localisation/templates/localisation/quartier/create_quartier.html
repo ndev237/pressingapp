@@ -17,16 +17,13 @@
             <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
                     <label for="ville" class="block text-lg font-semibold leading-6 text-gray-900">Ville</label>
-
                     <select name="ville" id="ville"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         {% for ville in villes %}
                             <option value="{{ ville.id }}">{{ ville.intitule }}</option>
                         {% endfor %}
                     </select>
-
                 </div>
-
                 <br>
                 <div>
                     <label for="intitule" class="block text-lg font-semibold leading-6 text-gray-900">Quartier </label>

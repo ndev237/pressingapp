@@ -33,7 +33,7 @@
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ vi.intitule }}</td>
 
                     <td>
-                        <a href="{% url 'localisation:ville_create' %}"
+                        <a href="{% url 'localisation:ville_update' vi.pk %}"
                            class="bg-blue-700 hover:bg-blue-900 text-white font-bold py-1 px-2 border border-blue-500 rounded">Modifier</a>
 
                         <a href="{% url 'localisation:ville_create' %}"

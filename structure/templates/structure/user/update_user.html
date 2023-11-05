@@ -11,15 +11,73 @@
 
         </div>
         <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl">Modifier l'utilisateur
-                "{{ user.nom }}"</h2>
+            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl">Ajouter un Utilisateur</h2>
         </div>
-
         <form method="POST" class="mx-auto mt-10 max-w-xl sm:mt-18">
             {% csrf_token %}
+
             <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
-                    {{ form.as_p }}
+                    <label for="nom" class="block text-lg font-semibold leading-6 text-gray-900">Nom</label>
+                    <div class="mt-2.5">
+                        <input type="text" id="nom" name="last_name" placeholder="Entrer votre nom" value="{{ user.last_name }}"
+                               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div>
+                    <label for="Prenom" class="block text-lg font-semibold leading-6 text-gray-900">Prenom</label>
+                    <div class="mt-2.5">
+                        <input type="text" name="first_name" id="prenom" autocomplete="prenom" placeholder="Entrer votre prenom" value="{{ user.first_name }}"
+                               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="email" class="block text-lg font-semibold leading-6 text-gray-900">Email</label>
+                    <div class="mt-2.5">
+                        <input type="email" name="email" id="email" placeholder=" Votre  e-mail" value="{{ user.email }}"
+                               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="telephone" class="block text-lg font-semibold leading-6 text-gray-900">Nom d'utilisateur </label>
+                    <div class="relative mt-2.5">
+                        <input type="text" name="username" id="username" autocomplete="username"
+                               placeholder="Entrer votre nom d'utilisateur" value="{{ user.username }}"
+                               class="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                    <div>
+                        <label for="sexe"
+                               class="block text-lg font-semibold leading-6 text-gray-900">Sexe</label>
+                        <select name="sex" id="sexe"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="man">Homme</option>
+                            <option value="woman">Femme</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="groupe" class="block text-lg font-semibold leading-6 text-gray-900">Groupe</label>
+                        <select name="group" id="groupe"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            {% for user in users %}
+                                <option value="{{ user.id }}">{{ user.auth.group }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                </div>
+                <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                    <div>
+                        <label for="permission"
+                               class="block text-lg font-semibold leading-6 text-gray-900">Permission</label>
+                        <select name="user_permissions" id="permission"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            {% for user in users %}
+                                <option value="{{ user.id }}">{{ user.auth.permission }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
             </div>
             <br>
@@ -29,8 +87,8 @@
                     Modifier
                 </button>
             </div>
+
         </form>
-        <a href="{% url 'structure:user_list' %}">Retour à la liste</a>
     </div>
 
 {% endblock %}

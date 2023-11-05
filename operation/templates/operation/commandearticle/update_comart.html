@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title> Modification </title>
+{% endblock %}
+{% block content %}
+    <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+        <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+             aria-hidden="true">
+        </div>
+        <div class="mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl">Modifier une commande d'article</h2>
+        </div>
+        <form method="POST" class="mx-auto mt-10 max-w-xl sm:mt-18">
+            {% csrf_token %}
+
+            <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                <div>
+                    <label for="commande"
+                           class="block text-lg font-semibold leading-6 text-gray-900">Commande</label>
+                    <select name="commande" id="commande"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        {% for com in commandes %}
+                            <option value="{{ com.id }} {% if com.id == comart.com.id %}
+                                    selected {% endif %}">{{ com.client.nom }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="article" class="block text-lg font-semibold leading-6 text-gray-900">Article</label>
+                    <select name="article" id="article"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        {% for art in articles %}
+                            <option value="{{ art.id }} {% if art.id == comart.art.id %}
+                                    selected {% endif %}">{{ art.intitule }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="quantite" class="block text-lg font-semibold leading-6 text-gray-900">Quantitè</label>
+                    <div class="mt-2.5">
+                        <input type="number" name="quantite" id="quantite" placeholder="Entrer la quantitè" value="{{ comart.quantite }}"
+                               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="montant" class="block text-lg font-semibold leading-6 text-gray-900">Montant</label>
+                    <div class="mt-2.5">
+                        <input type="number" name="montant" id="montant" placeholder="Entrer le montant " rows="4" value="{{ comart.montant }}"
+                               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+            </div>
+            <div class="mt-10">
+                <button type="submit"
+                        class="block w-full rounded-md bg-orange-600 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    Modifier
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

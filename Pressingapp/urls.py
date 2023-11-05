@@ -23,5 +23,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('localisation/', include("localisation.urls")),
     path('structure/', include("structure.urls")),
+    path('operation/', include("operation.urls")),
     path('admin/', admin.site.urls),
 ]

@@ -37,14 +37,14 @@ def create_conti(request):
     return render(request, 'localisation/continant/create_conti.html', {'form': form})
 
 
-def update_conti(request, id):
+def update_conti(request, pk):
     """
 
-    :param id:
+    :param pk:
     :param request:
     :return:
     """
-    continent = get_object_or_404(Continant, pk=id)
+    continent = get_object_or_404(Continant, pk=pk)
     if request.method == 'POST':
         form = ContinantForm(request.POST, instance=continent)
         if form.is_valid():
@@ -52,17 +52,17 @@ def update_conti(request, id):
             return redirect('localisation:continant_list')
     else:
         form = ContinantForm(instance=continent)
-    return render(request, 'localisation/continant/update_conti.html', {'form': form}, {'continant': continent})
+    return render(request, 'localisation/continant/update_conti.html', {'form': form, 'continant': continent})
 
 
-def delete_conti(request, id):
+def delete_conti(request, pk):
     """
 
     :param request:
-    :param id:
+    :param pk:
     :return:
     """
-    continent = get_object_or_404(Continant, pk=id)
+    continent = get_object_or_404(Continant, pk=pk)
     if request.method == 'POST':
         continent.delete()
         return redirect('localisation:continant_list')
@@ -105,6 +105,7 @@ def update_pays(request, pk):
     :param request:
     :return:
     """
+    continants = Continant.objects.all()
     pays = get_object_or_404(Pays, pk=pk)
     if request.method == 'POST':
         form = PaysForm(request.POST, instance=pays)
@@ -113,7 +114,7 @@ def update_pays(request, pk):
             return redirect('localisation:pays_list')
     else:
         form = PaysForm(instance=pays)
-    return render(request, 'localisation/pays/update_pays.html', {'form': form}, {'pays': pays})
+    return render(request, 'localisation/pays/update_pays.html', {'form': form, 'pays': pays, 'continants': continants})
 
 
 def delete_pays(request, pk):
@@ -167,15 +168,16 @@ def update_ville(request, pk):
     :param request:
     :return:
     """
-    ville = get_object_or_404(Pays, pk=pk)
+    pays = Pays.objects.all()
+    ville = get_object_or_404(Ville, pk=pk)
     if request.method == 'POST':
         form = VilleForm(request.POST, instance=ville)
         if form.is_valid():
             form.save()
-            return redirect('localisation:ville_create')
+            return redirect('localisation:ville_list')
     else:
         form = VilleForm(instance=ville)
-    return render(request, 'localisation/ville/update_ville.html', {'form': form}, {'ville': ville})
+    return render(request, 'localisation/ville/update_ville.html', {'form': form, 'ville': ville, 'pays': pays})
 
 
 def delete_ville(request, pk):
@@ -229,15 +231,16 @@ def update_quartier(request, pk):
     :param request:
     :return:
     """
-    quartier = get_object_or_404(Pays, pk=pk)
+    villes = Ville.objects.all()
+    quartier = get_object_or_404(Quartier, pk=pk)
     if request.method == 'POST':
         form = QuartierForm(request.POST, instance=quartier)
         if form.is_valid():
             form.save()
-            return redirect('localisation:quartier_create')
+            return redirect('localisation:quartier_list')
     else:
         form = VilleForm(instance=quartier)
-    return render(request, 'localisation/quartier/update_quartier.html', {'form': form}, {'quartier': quartier})
+    return render(request, 'localisation/quartier/update_quartier.html', {'form': form, 'quartier': quartier, 'villes': villes})
 
 
 def delete_quartier(request, pk):

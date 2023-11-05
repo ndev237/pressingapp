@@ -24,7 +24,7 @@ class Entreprise(models.Model):
     id = models.CharField(primary_key=True, max_length=30, default=ulid, editable=False, db_index=True)
     nom = models.CharField(max_length=20)
     adresse = models.CharField(max_length=20)
-    tel = models.IntegerField(max_length=9)
+    tel = models.IntegerField()
 
 
 class Filiale(models.Model):
@@ -33,7 +33,7 @@ class Filiale(models.Model):
     ville = models.ForeignKey('localisation.Ville', on_delete=models.SET_NULL, null=True)
     nom = models.CharField(max_length=20)
     adresse = models.CharField(max_length=20)
-    tel = models.IntegerField(max_length=9)
+    tel = models.IntegerField()
 
 
 class Client(models.Model):
@@ -43,4 +43,4 @@ class Client(models.Model):
     prenom = models.CharField(max_length=15)
     adresse = models.CharField(max_length=10)
     email = models.EmailField(max_length=40)
-    tel = models.IntegerField(max_length=9)
+    tel = models.IntegerField()

@@ -33,6 +33,8 @@
                     <td>
                         <a href="{% url 'localisation:continant_delete' cont.pk %}"
                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 border border-red-500 rounded">Supprimer</a>
+                        <a href="{% url 'localisation:continant_update' cont.pk %}"
+                           class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-1 px-2 border border-blue-700 rounded">Mofifier</a>
                     </td>
                 </tr>
             {% empty %}
