@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 {% load static tailwind_tags %}
+{% load static %}
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %} ">
     {% block title %}
-    <title> Accueil du pressing </title>
+        <title> Accueil du pressing </title>
     {% endblock%}
     {% tailwind_css %}
 </head>
@@ -15,4 +17,5 @@
 </main>
 
 </body>
+
 </html>

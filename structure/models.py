@@ -7,17 +7,13 @@ from ulid import ulid
 # Create your models here.
 class User(AbstractUser):
     class Sex(models.TextChoices):
-        MAN = 'man', _('Homme')
-        WOMAN = 'Woman', _('Femme')
+        MAN = 'Home', _('Homme')
+        WOMAN = 'Femme', _('Femme')
 
-    parent_id = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
     sex = models.CharField(choices=Sex.choices, null=False, max_length=12)
 
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
-
-    groups = models.ManyToManyField('auth.group', related_name='custom_user_group')
-    user_permissions = models.ManyToManyField('auth.permission', related_name='custom_user_permission')
 
 
 class Entreprise(models.Model):
@@ -37,10 +33,15 @@ class Filiale(models.Model):
 
 
 class Client(models.Model):
+    class Sex(models.TextChoices):
+        MAN = 'Home', _('Homme')
+        WOMAN = 'Femme', _('Femme')
+
     id = models.CharField(primary_key=True, max_length=30, default=ulid, editable=False, db_index=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     nom = models.CharField(max_length=15)
     prenom = models.CharField(max_length=15)
+    sex = models.CharField(choices=Sex.choices, null=False, max_length=12)
     adresse = models.CharField(max_length=10)
     email = models.EmailField(max_length=40)
     tel = models.IntegerField()
