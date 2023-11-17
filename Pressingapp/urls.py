@@ -21,7 +21,6 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('', views.list_mess, name='message_list'),
     path('localisation/', include("localisation.urls")),
     path('structure/', include("structure.urls")),
     path('operation/', include("operation.urls")),

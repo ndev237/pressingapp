@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Entreprise, Filiale, User, Client
-from .forms import EntrepriseForm, FilialeForm, UserForm, ClientForm
+from .models import Entreprise, Filiale, User, Client, Message
+from .forms import EntrepriseForm, FilialeForm, UserForm, ClientForm, MessageForm
 from localisation.models import Ville
 
 
@@ -30,10 +30,14 @@ def create_user(request):
     """
 
     if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('structure:user_list')
+        last_name = request.POST.get('last_name')
+        first_name = request.POST.get('first_name')
+        sex = request.POST.get('sex')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        User.objects.create(last_name=last_name, first_name=first_name, sex=sex, username=username,email=email,password=password)
+        return redirect('structure:user_list')
     else:
         form = UserForm()
     return render(request, 'structure/user/create_user.html', {'form': form})
@@ -114,14 +118,14 @@ def update_entreprise(request, pk):
     return render(request, 'structure/entreprise/update_entreprise.html', {'form': form, 'entreprise': entreprise})
 
 
-def delete_entreprise(request, id):
+def delete_entreprise(request, pk):
     """
 
     :param request:
-    :param id:
+    :param pk:
     :return:
     """
-    entreprise = get_object_or_404(Entreprise, pk=id)
+    entreprise = get_object_or_404(Entreprise, pk=pk)
     if request.method == 'POST':
         entreprise.delete()
         return redirect('structure:entreprise_list')
@@ -178,7 +182,8 @@ def update_filiale(request, pk):
             return redirect('structure:filiale_list')
     else:
         form = FilialeForm(instance=filiale)
-    return render(request, 'structure/filiale/update_filiale.html', {'form': form, 'filiale': filiale, 'villes': villes, 'entreprises':entreprises})
+    return render(request, 'structure/filiale/update_filiale.html',
+                  {'form': form, 'filiale': filiale, 'villes': villes, 'entreprises': entreprises})
 
 
 def delete_filiale(request, pk):
@@ -216,11 +221,12 @@ def create_client(request):
         user = request.POST.get('user')
         nom = request.POST.get('nom')
         prenom = request.POST.get('prenom')
+        sex = request.POST.get('sex')
         adresse = request.POST.get('adresse')
         email = request.POST.get('email')
         tel = request.POST.get('tel')
         user = User.objects.get(pk=user)
-        Client.objects.create(user=user, nom=nom, prenom=prenom, adresse=adresse, email=email, tel=tel)
+        Client.objects.create(user=user, nom=nom, prenom=prenom, sex=sex, adresse=adresse, email=email, tel=tel)
         return redirect('structure:client_list')
     return render(request, 'structure/client/create_client.html', {'users': users})
 
@@ -256,3 +262,30 @@ def delete_client(request, pk):
         client.delete()
         return redirect('structure:client_list')
     return render(request, 'structure/client/list_client.html', {'client': client})
+
+
+def list_mess(requests):
+    """
+
+    :param requests:
+    """
+    messages = Message.objects.all()
+    return render(requests, 'structure/message/list_message.html', {'messages': messages})
+
+
+def add_mess(request):
+    """
+
+    :param request:
+    :return:
+    """
+    if request.method == 'POST':
+        nom = request.POST.get('nom')
+        email = request.POST.get('email')
+        tel = request.POST.get('tel')
+        message = request.POST.get('message')
+        Message.objects.create(nom=nom, email=email, tel=tel, message=message)
+        return redirect('home')
+    else:
+        form = MessageForm()
+    return render(request, 'structure/message/list_message.html', {'form': form})

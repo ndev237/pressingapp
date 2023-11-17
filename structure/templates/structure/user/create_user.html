@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseS.html' %}
 
 {% block title %}
     <title>creation</title>
@@ -18,10 +18,53 @@
 
             <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                 <div>
-                    {{ form.as_p }}
+                    <label for="last_name" class="block text-lg font-semibold leading-6 text-gray-900">Nom</label>
+                    <div class="mt-2.5">
+                        <input type="text" id="last_name" name="last_name" placeholder="Entrer votre nom"
+                               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
                 </div>
-                <br>
-                <div class="mt-10">
+                <div>
+                    <label for="first_name" class="block text-lg font-semibold leading-6 text-gray-900">Prenom</label>
+                    <div class="mt-2.5">
+                        <input type="text" name="first_name" id="first_name" autocomplete="prenom" placeholder="Entrer votre prenom"
+                               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                    <div>
+                        <label for="sexe"
+                               class="block text-lg font-semibold leading-6 text-gray-900">Sexe</label>
+                        <select name="sex" id="sexe"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="man">Homme</option>
+                            <option value="woman">Femme</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="email" class="block text-lg font-semibold leading-6 text-gray-900">Email</label>
+                    <div class="mt-2.5">
+                        <input type="email" name="email" id="email" placeholder=" Votre  e-mail"
+                               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div>
+                    <label for="telephone" class="block text-lg font-semibold leading-6 text-gray-900">Nom d'utilisateur </label>
+                    <div class="relative mt-2.5">
+                        <input type="text" name="username" id="username"
+                               placeholder="Entrer votre nom d'utilisateur"
+                               class="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div>
+                    <label for="password" class="block text-lg font-semibold leading-6 text-gray-900">Mot de passe</label>
+                    <div class="mt-2.5">
+                        <input type="password" name="password" id="password" placeholder="Entrer votre Mot de passe"
+                               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
                     <button type="submit"
                             class="block w-full rounded-md bg-orange-600 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                         Ajouter

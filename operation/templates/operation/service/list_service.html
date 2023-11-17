@@ -11,9 +11,11 @@
 
         </div>
         <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl">Liste des Services</h2>
+            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl pb-5">Liste des Services</h2>
         </div>
-
+        <a href="{% url 'operation:service_add' %}"
+           class=" group relative h-12 w-48 overflow-hidden rounded-2xl font-bold text-white pb-2 bg-blue-700 px-4 py-3.5 text-center text-xl shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline">
+            Ajouter un service</a>
         <table class="min-w-full border-collapse block md:table sm:shadow-lg mt-3">
             <thead class="block md:table-header-group">
             <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
@@ -44,13 +46,6 @@
             {% endfor %}
             </tbody>
         </table>
-        <br>
-        <a href="{% url 'operation:service_add' %}"
-           class=" rounded-full bg-blue-700 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline">
-            Ajouter un service</a>
-        <a href="{% url 'operation:operation_index' %}"
-           class=" rounded-full bg-blue-700 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline">
-            Retour à l'index</a>
     </div>
 
 {% endblock %}

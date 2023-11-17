@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<a href="{% url 'structure:client_list' %}"> Liste des Clients </a>
-<a href="{% url 'structure:entreprise_list' %}"> Liste des Entreprises </a>
-<a href="{% url 'structure:user_list' %}"> Liste des Utilisateurs </a>
-<a href="{% url 'structure:filiale_list' %}"> Liste des Filiales </a>
+{% extends 'baseS.html' %}
+{% load static %}
+{% block title %}
+    <title> text</title>
+{% endblock %}
+{% block content %}
 
-</body>
-</html>
+{% endblock %}

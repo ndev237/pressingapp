@@ -1,38 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'baseS.html' %}
 {% block title %}
-<title>home</title>
+    <title>home</title>
 {% endblock %}
 {% block content %}
- <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div class="isolate bg-white rounded-lg p-4 shadow-md my-4 px-6 py-24 sm:py-32 lg:px-8">
         <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
              aria-hidden="true">
 
         </div>
         <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl ">Liste des Utilisateurs</h2>
+            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl ">Liste des Messages</h2>
         </div>
 
-        <table class="min-w-full border-collapse block md:table sm:shadow-lg mt-3">
+        <table class="table-auto w-full min-w-full border-collapse block md:table sm:shadow-lg mt-3">
             <thead class="block md:table-header-group">
             <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
                 <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    sex de l'utilisateur
+                    Nom
                 </th>
                 <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Prenom de l'utilisateur
+                    Tèlèphone
                 </th>
                 <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Nom de l'utilisateur
+                    Email
                 </th>
                 <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Group de l'utilisateur
-                </th>
-                <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Permission de l'utilisateur
-                </th>
-
-                <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Action
+                    Message
                 </th>
             </tr>
             </thead>

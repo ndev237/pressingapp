@@ -1,11 +1,13 @@
-from django import forms
-from .models import User, Entreprise, Filiale, Client
+from .models import User, Entreprise, Filiale, Client, Message
+from django.contrib.auth.forms import *
+from django.contrib.auth import get_user_model
 
 
 class UserForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['last_name', 'first_name', 'sex', 'username', 'email', 'password']
+    class Meta(UserCreationForm.Meta):
+        model = get_user_model()
+        fields = ['last_name', 'first_name', 'username', 'email', 'password']
+
 
 class EntrepriseForm(forms.ModelForm):
     class Meta:
@@ -22,4 +24,10 @@ class FilialeForm(forms.ModelForm):
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ['user', 'nom', 'prenom', 'adresse', 'email', 'tel']
+        fields = ['user', 'nom', 'prenom', 'sex', 'adresse', 'email', 'tel']
+
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ['nom', 'tel', 'email', 'message']

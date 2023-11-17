@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+{% load static tailwind_tags %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+
+    {% block title %}
+        <title> Accueil du pressing </title>
+    {% endblock %}
+    {% tailwind_css %}
+</head>
+<body>
+<nav class="bg-white border-b border-gray-300">
+    <div class="flex justify-between items-center px-9">
+
+        <button id="menuBtn">
+            <i class="fas fa-bars text-cyan-500 text-lg"></i>
+        </button>
+
+        <!-- Logo -->
+        <div class="ml-1">
+            <img src="https://www.emprenderconactitud.com/img/POC%20WCS%20(1).png" alt="logo" class="h-20 w-28">
+        </div>
+
+        <div class="space-x-4">
+            <button>
+                <i class="fas fa-bell text-cyan-500 text-lg"></i>
+            </button>
+
+
+            <button>
+                <i class="fas fa-user text-cyan-500 text-lg"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="font-poppins antialiased">
+    <div id="view" class="h-full w-screen flex flex-row" x-data="{ sidenav: true }">
+        <div id="sidebar" class="bg-white h-screen md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out" x-show="sidenav" @click.away="sidenav = false"
+        >
+            <div class="space-y-6 md:space-y-10 mt-10">
+                <h1 class="font-bold text-4xl text-center md:hidden">
+                    D<span class="text-teal-600">.</span>
+                </h1>
+                <h1 class="hidden md:block font-bold text-sm md:text-xl text-center">
+                    GOLD CLEAR<span class="text-orange-600 text-4xl">.</span>
+                </h1>
+                <div>
+                    <h2
+                            class="font-medium text-2xl md:text-2xl text-center text-orange-500"
+                    >
+                        Eduard Pantazi
+                    </h2>
+                    <p class="text-xs text-gray-500 text-center">Administrator</p>
+                </div>
+
+                <div id="menu" class="flex flex-col space-y-2">
+                    <a href="{% url 'home' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fas fa-home text-white"></i>
+                        <span class="-mr-1 font-medium">Mome page </span>
+                    </a>
+                    <a href="{% url 'localisation:continant_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-globe"></i>
+                        <span class="-mr-1 font-medium">Gérer les continents</span>
+                    </a>
+                    <a href="{% url 'localisation:pays_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-flag"></i>
+                        <span class="-mr-1 font-medium">Gérer les pays</span>
+                    </a>
+                    <a href="{% url 'localisation:ville_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-city"></i>
+                        <span class="-mr-1 font-medium">Gérer les villes</span>
+                    </a>
+
+                    <a href="{% url 'localisation:quartier_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-city"></i>
+                        <span class="-mr-1 font-medium">Gérer les quartiers</span>
+                    </a>
+                    <a href="{% url 'structure:entreprise_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-hotel"></i>
+                        <span class="-mr-1 font-medium">Gérer les entreprises</span>
+                    </a>
+                    <a href="{% url 'structure:filiale_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-hotel"></i>
+                        <span class="-mr-1 font-medium">Gérer les filiales</span>
+                    </a>
+                    <a href="{% url 'structure:user_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <span class="-mr-1 font-medium">Gérer les utilisateurs</span>
+                    </a>
+                    <a href="{% url 'structure:client_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-duotone fa-people-simple"></i>
+                        <span class="-mr-1 font-medium">Gérer les clients</span>
+                    </a>
+                    <a href="{% url 'structure:message_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-message"></i>
+                        <span class="-mr-1 font-medium">Liste des messages</span>
+                    </a>
+                    <a href="{% url 'operation:article_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-shirt"></i>
+                        <span class="-mr-1 font-medium">Gérer les articles</span>
+                    </a>
+                    <a href="{% url 'operation:service_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-shirt"></i>
+                        <span class="-mr-1 font-medium">Gérer les services</span>
+                    </a>
+                    <a href="{% url 'operation:commande_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-shirt"></i>
+                        <span class="-mr-1 font-medium">Gérer les commandes</span>
+                    </a>
+                    <a href="{% url 'operation:ligncom_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-shirt"></i>
+                        <span class="-mr-1 font-medium">Gérer les lignes de commande</span>
+                    </a>
+                    <a href="{% url 'operation:comart_list' %}" aria-label="dashboard"
+                       class="relative px-4 py-3 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
+                        <i class="fa-solid fa-shirt"></i>
+                        <span class="-mr-1 font-medium">Gérer les commandes des articles</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>

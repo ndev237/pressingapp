@@ -20,4 +20,5 @@ urlpatterns = [
     path('update_client/<str:pk>/', views.update_client, name="client_update"),
     path('delete_client/<str:pk>/', views.delete_client, name="client_delete"),
     path('list_client/', views.list_client, name="client_list"),
+    path('list_message/', views.list_mess, name="message_list"),
 ]

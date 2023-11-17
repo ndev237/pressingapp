@@ -7,13 +7,17 @@ from ulid import ulid
 # Create your models here.
 class User(AbstractUser):
     class Sex(models.TextChoices):
-        MAN = 'Home', _('Homme')
+        MAN = 'Homme', _('Homme')
         WOMAN = 'Femme', _('Femme')
 
-    sex = models.CharField(choices=Sex.choices, null=False, max_length=12)
+    parent_id = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
+    sex = models.CharField(choices=Sex.choices, null=False, max_length=10)
 
     def get_full_name(self):
-        return f"{self.first_name} {self.last_name}"
+        return f"{self.first_name}{self.last_name}"
+
+    groups = models.ManyToManyField('auth.Group', related_name='custom_user_groups')
+    user_permissions = models.ManyToManyField('auth.Permission', related_name='custom_user_permissions')
 
 
 class Entreprise(models.Model):
@@ -45,3 +49,11 @@ class Client(models.Model):
     adresse = models.CharField(max_length=10)
     email = models.EmailField(max_length=40)
     tel = models.IntegerField()
+
+
+class Message(models.Model):
+    id = models.CharField(primary_key=True, max_length=30, default=ulid, editable=False, db_index=True)
+    nom = models.CharField(max_length=15)
+    email = models.EmailField(max_length=40)
+    tel = models.IntegerField()
+    message = models.CharField(max_length=255)

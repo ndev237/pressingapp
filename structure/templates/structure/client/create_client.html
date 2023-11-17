@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'baseS.html' %}
 
 {% block title %}
     <title>creation</title>
 {% endblock %}
 
 {% block content %}
-    <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div class="isolate bg-white px-6 py-24 sm:py-32 lg:px-8  ">
         <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
              aria-hidden="true">
         </div>
@@ -25,21 +25,31 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="sm:col-span-2">
+                <div>
+                    <label for="sexe"
+                           class="block text-lg font-semibold leading-6 text-gray-900">Sexe</label>
+                    <select name="sex" id="sexe"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option value="">Veiller choisir le sexe</option>
+                        <option value="Homme">Homme</option>
+                        <option value="Femme">Femme</option>
+                    </select>
+                </div>
+                <div>
                     <label for="nom" class="block text-lg font-semibold leading-6 text-gray-900">Nom</label>
                     <div class="mt-2">
                         <input type="text" name="nom" id="nom" placeholder="Nom du client"
                                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
-                <div class="sm:col-span-2">
+                <div>
                     <label for="prenom" class="block text-lg font-semibold leading-6 text-gray-900">Prenom</label>
                     <div class="mt-2">
                         <input type="text" name="prenom" id="prenom" placeholder="Prenom du client"
                                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
-                <div class="sm:col-span-2">
+                <div>
                     <label for="adresse"
                            class="block text-lg font-semibold leading-6 text-gray-900">adresse </label>
                     <div class="relative mt-2">
@@ -48,7 +58,7 @@
                                class="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
-                <div class="sm:col-span-2">
+                <div>
                     <label for="email" class="block text-lg font-semibold leading-6 text-gray-900">Email</label>
                     <div class="mt-2">
                         <input type="email" name="email" id="email" placeholder="Email du client"
@@ -62,13 +72,12 @@
                                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
-
-            </div>
-            <div class="mt-2">
-                <button type="submit"
-                        class="block w-full rounded-md bg-orange-600 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Ajouter
-                </button>
+                <div class="sm:col-span-2">
+                    <button type="submit"
+                            class="block w-full rounded-md bg-orange-600 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        Ajouter
+                    </button>
+                </div>
             </div>
         </form>
     </div>

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseS.html' %}
 
 {% block title %}
     <title>modification</title>
@@ -40,37 +40,47 @@
                                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
-                <div class="sm:col-span-2">
-                    <label for="adresse"
-                           class="block text-lg font-semibold leading-6 text-gray-900">adresse </label>
-                    <div class="relative mt-2">
-                        <input type="text" name="adresse" id="adresse"
-                               placeholder="Adresse du client" value="{{ client.adresse }}"
-                               class="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                    <div>
+                        <label for="sexe"
+                               class="block text-lg font-semibold leading-6 text-gray-900">Sexe</label>
+                        <select name="sex" id="sexe"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="Homme" value="{{ client.sex }}" selected>Homme</option>
+                            <option value="Femme" value="{{ client.sex }}" selected>Femme</option>
+                        </select>
                     </div>
-                </div>
-                <div class="sm:col-span-2">
-                    <label for="email" class="block text-lg font-semibold leading-6 text-gray-900">Email</label>
-                    <div class="mt-2">
-                        <input type="email" name="email" id="email" placeholder="Email du client" value="{{ client.email }}"
-                               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <div class="sm:col-span-2">
+                        <label for="adresse"
+                               class="block text-lg font-semibold leading-6 text-gray-900">adresse </label>
+                        <div class="relative mt-2">
+                            <input type="text" name="adresse" id="adresse"
+                                   placeholder="Adresse du client" value="{{ client.adresse }}"
+                                   class="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
                     </div>
-                </div>
-                <div class="sm:col-span-2">
-                    <label for="tel" class="block text-lg font-semibold leading-6 text-gray-900">Téléphone</label>
-                    <div class="mt-2">
-                        <input type="number" name="tel" id="tel" placeholder="Téléphone du client" rows="4" value="{{ client.tel }}"
-                               class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <div class="sm:col-span-2">
+                        <label for="email" class="block text-lg font-semibold leading-6 text-gray-900">Email</label>
+                        <div class="mt-2">
+                            <input type="email" name="email" id="email" placeholder="Email du client" value="{{ client.email }}"
+                                   class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
                     </div>
-                </div>
+                    <div class="sm:col-span-2">
+                        <label for="tel" class="block text-lg font-semibold leading-6 text-gray-900">Téléphone</label>
+                        <div class="mt-2">
+                            <input type="number" name="tel" id="tel" placeholder="Téléphone du client" rows="4" value="{{ client.tel }}"
+                                   class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
 
-            </div>
-            <div class="mt-2">
-                <button type="submit"
-                        class="block w-full rounded-md bg-orange-600 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Modifier
-                </button>
-            </div>
+                </div>
+                <div class="mt-2">
+                    <button type="submit"
+                            class="block w-full rounded-md bg-orange-600 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-blue-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        Modifier
+                    </button>
+                </div>
         </form>
     </div>
 {% endblock %}

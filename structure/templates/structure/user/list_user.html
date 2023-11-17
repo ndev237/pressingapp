@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseS.html' %}
 
 {% block title %}
     <title> liste </title>
@@ -11,26 +11,31 @@
 
         </div>
         <div class="mx-auto max-w-2xl text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl ">Liste des Utilisateurs</h2>
+            <h2 class="text-3xl font-bold tracking-tight text-orange-400 sm:text-4xl pb-5">Liste des Utilisateurs</h2>
         </div>
-
+        <a href="{% url 'structure:user_create' %}"
+           class=" group relative h-12 w-48 overflow-hidden rounded-2xl font-bold text-white pb-2 bg-blue-700 px-4 py-3.5 text-center text-xl shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline">
+            Ajouter un utilisateur</a>
         <table class="min-w-full border-collapse block md:table sm:shadow-lg mt-3">
             <thead class="block md:table-header-group">
             <tr class="border border-grey-500 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto  md:relative ">
                 <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    sex de l'utilisateur
+                    Prenom
                 </th>
                 <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Prenom de l'utilisateur
+                    Nom
                 </th>
                 <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Nom de l'utilisateur
+                    sex
                 </th>
                 <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Group de l'utilisateur
+                    Nom d'utilisateur
                 </th>
                 <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
-                    Permission de l'utilisateur
+                    Email
+                </th>
+                <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
+                    mot de passe
                 </th>
 
                 <th class="bg-orange-400 p-2 text-white font-bold md:border md:border-grey-500 text-left block md:table-cell">
@@ -41,11 +46,12 @@
             <tbody class="block md:table-row-group">
             {% for user in users %}
                 <tr class="bg-blue-500 font-bold border border-grey-500 md:border-3 block md:table-row sm:shadow-lg text-white">
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ user.sex }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ user.first_name }}</td>
                     <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ user.last_name }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ user.groups }}</td>
-                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ user.user_permissions }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ user.sex }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ user.username }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ user.email }}</td>
+                    <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">{{ user.password }}</td>
 
                     <td>
                         <a href="{% url 'structure:user_delete' user.pk %}"
@@ -61,13 +67,6 @@
             {% endfor %}
             </tbody>
         </table>
-        <br>
-        <a href="{% url 'structure:user_create' %}"
-           class=" rounded-full bg-blue-700 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline">
-            Ajouter un utilisateur</a>
-        <a href="{% url 'structure:structure_index' %}"
-           class=" rounded-full bg-blue-700 px-4 py-3.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline">
-            Retour à l'index</a>
     </div>
 
 {% endblock %}
